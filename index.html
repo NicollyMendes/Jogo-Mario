@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario</title>
+</head>
+<body>
+
+    
+    <div class="score-container">
+        <div class="score">Pontuação: <span id="score">0</span></div>
+    </div>
+
+    
+    <div class="game">
+        <img src="img/mario.gif" alt="mario" class="mario">
+        <img src="img/pipe.png" alt="cano" class="pipe">
+        <img src="img/clouds.png" alt="nuvem" class="clouds">
+        <button class="start" onclick="startGame()">Iniciar</button>
+    </div>
+
+    
+    <div class="game-over">
+        <p class="final-score">Pontuação Final: <span id="final-score">0</span></p>
+        <button class="restart-button" onclick="restartGame()">Reiniciar</button>
+    </div>
+
+</body>
+<script src="script.js"></script>
+</html>
