@@ -8,6 +8,7 @@ const restartButton = document.querySelector('.restart-button');
 
 let score = 0; 
 let gameLoop; 
+let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); // Detecta se está em um dispositivo móvel
 
 audioStart = new Audio('./src/soung/audio_theme.mp3');
 audioGameOver = new Audio('./src/soung/audio_gameover.mp3');
@@ -20,42 +21,34 @@ const startGame = () => {
     audioStart.play();
     audioStart.currentTime = 0;
 
-    // Reinicia a pontuação
     score = 0;
     updateScore();
 
-    // Inicia o loop
     if (gameLoop) clearInterval(gameLoop);
     loop();
 }
 
 const restartGame = () => {
-    // Exibe o Mario novamente
     mario.src = './img/mario.gif';
     mario.style.width = '150px';
     mario.style.bottom = '0';
 
-    // Reinicia o cenário
     gameOver.style.display = 'none';
     pipe.style.left = '';
     pipe.style.right = '0';
-    pipe.classList.add('pipe-animation'); // Pipe começa a animar de novo
+    pipe.classList.add('pipe-animation'); 
 
-    // Reinicia os áudios
     audioGameOver.pause();
     audioGameOver.currentTime = 0;
 
     audioStart.play();
     audioStart.currentTime = 0;
 
-    // Remove qualquer classe de "pulo" que o Mario tenha
     mario.classList.remove('jump');
 
-    // Reinicia a pontuação
     score = 0;
     updateScore();
 
-    // Reinicia o loop do jogo
     if (gameLoop) clearInterval(gameLoop);
     loop();
 }
@@ -64,8 +57,16 @@ const jump = () => {
     if (!mario.classList.contains('jump')) {
         mario.classList.add('jump');
 
+        // Se for dispositivo móvel, aumenta a altura do pulo
+        if (isMobile) {
+            mario.style.animation = 'jump-mobile 800ms ease-out';
+        } else {
+            mario.style.animation = 'jump 800ms ease-out';
+        }
+
         setTimeout(() => {
             mario.classList.remove('jump');
+            mario.style.animation = ''; 
         }, 800);
     }
 }
@@ -94,7 +95,6 @@ const loop = () => {
 
             clearInterval(gameLoop);
         } else {
-            // Se o jogador não perder, a pontuação aumenta
             score++;
             updateScore();
         }
@@ -109,7 +109,6 @@ const updateScore = () => {
     scoreDisplay.innerText = `Pontuação: ${score}`; 
 }
 
-// Escutadores de eventos
 document.addEventListener('keypress', e => {
     if (e.key === ' ') jump();
 });
