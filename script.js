@@ -8,7 +8,7 @@ const restartButton = document.querySelector('.restart-button');
 
 let score = 0; 
 let gameLoop; 
-let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); // Detecta se está em um dispositivo móvel
+let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 audioStart = new Audio('./src/soung/audio_theme.mp3');
 audioGameOver = new Audio('./src/soung/audio_gameover.mp3');
@@ -57,7 +57,7 @@ const jump = () => {
     if (!mario.classList.contains('jump')) {
         mario.classList.add('jump');
 
-        // Se for dispositivo móvel, aumenta a altura do pulo
+        // Se for dispositivo móvel, aumenta a altura e a duração do pulo
         if (isMobile) {
             mario.style.animation = 'jump-mobile 1200ms ease-out';
         } else {
@@ -67,7 +67,7 @@ const jump = () => {
         setTimeout(() => {
             mario.classList.remove('jump');
             mario.style.animation = ''; 
-        }, 1200);
+        }, isMobile ? 1200 : 1000); 
     }
 }
 
