@@ -59,7 +59,7 @@ const jump = () => {
 
         // Se for dispositivo móvel, aumenta a altura do pulo
         if (isMobile) {
-            mario.style.animation = 'jump-mobile 1000ms ease-out';
+            mario.style.animation = 'jump-mobile 1200ms ease-out';
         } else {
             mario.style.animation = 'jump 1000ms ease-out';
         }
@@ -67,7 +67,7 @@ const jump = () => {
         setTimeout(() => {
             mario.classList.remove('jump');
             mario.style.animation = ''; 
-        }, 1000);
+        }, 1200);
     }
 }
 
