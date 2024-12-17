@@ -97,7 +97,10 @@ button:hover {
         bottom: 0;
     }
     40% {
-        bottom: 200px;
+        bottom: 220px;
+    }
+    50% {
+        bottom: 220px;
     }
     100% {
         bottom: 0;
@@ -109,7 +112,10 @@ button:hover {
         bottom: 0;
     }
     40% {
-        bottom: 250px; 
+        bottom: 300px; 
+    }
+    50%{
+        bottom: 300px;
     }
     100% {
         bottom: 0;
